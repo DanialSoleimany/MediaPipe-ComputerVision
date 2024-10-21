@@ -1,6 +1,6 @@
 # Hand Pose Estimation
 
-This project demonstrates **real-time hand pose estimation** using [MediaPipe Hands](https://google.github.io/mediapipe/solutions/hands) and **OpenCV** for video capturing and rendering. The code detects and tracks the hand landmarks, focusing on key points like finger tips and knuckles.
+This project demonstrates **real-time hand pose estimation** using MediaPipe Hands and **OpenCV** for video capturing and rendering. The code detects and tracks the hand landmarks, focusing on key points like finger tips and knuckles.
 
 ## Table of Contents
 
