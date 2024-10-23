@@ -1,87 +1,51 @@
-# Hand Pose Estimation
+# Real-Time Sign Language Detection For Numbers From 0 to 9
 
-This project demonstrates **real-time hand pose estimation** using MediaPipe Hands and **OpenCV** for video capturing and rendering. The code detects and tracks the hand landmarks, focusing on key points like finger tips and knuckles.
+## Overview
+This project demonstrates real-time detection of sign language numbers (0-9) using hand gestures. The detection system utilizes a webcam to capture hand gestures, employs MediaPipe for hand pose estimation, and then predicts the corresponding number using a trained machine learning model (Random Forest). The model can accurately predict the numbers based on the hand landmarks' positions.
 
-## Table of Contents
-
-- [Demo Video](#demo-video)
-- [About MediaPipe](#about-mediapipe)
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Installation](#installation)
-- [How It Works](#how-it-works)
-- [Notes](#notes)
-- [Future Enhancements](#future-enhancements)
-
-## Demo Video
-
-Check out the working of the hand pose estimation in this demo video below:
+![Sign Language Numbers](https://github.com/DanialSoleimany/Real-Time-Sign-Language-Detection-Numbers/blob/main/0-to-9.jpg)
 
 [![Watch the video](https://img.youtube.com/vi/Krw_WpgB-X8/0.jpg)](https://youtu.be/Krw_WpgB-X8)
 
-Alternatively, [click here to watch the video on YouTube](https://youtu.be/Krw_WpgB-X8).
+## Table of Contents
+1. [Overview](#overview)
+2. [Requirements](#requirements)
+3. [Dataset](#dataset)
+4. [Model](#model)
+5. [Usage](#usage)
+6. [License](#license)
 
-## About MediaPipe
+## Requirements
+Make sure you have the following dependencies installed:
 
-[MediaPipe](https://mediapipe.dev/) is a cross-platform machine learning framework for building complex and customizable pipelines for computer vision and other types of ML models.
+- **Mediapipe**: `0.10.14`
+- **OpenCV (cv2)**: `4.10.0`
+- **Scikit-learn**: `1.5.2`
 
-In this task:
-- **MediaPipe Hands** solution is used, which identifies 21 hand landmarks, making it useful for gesture recognition, AR/VR applications, and more.
-- MediaPipe ensures fast and accurate hand tracking, even on lower-end devices.
+You can install them via pip:
 
-## Project Overview
+```bash
+pip install mediapipe==0.10.14 opencv-python==4.10.0 scikit-learn==1.5.2
+```
 
-The **Hand Pose Estimation** project uses **MediaPipe Hands** to identify 21 landmarks per hand in real time. The landmarks are drawn on the webcam feed, allowing for interactive hand gesture recognition and tracking. This can serve as a foundation for building applications like:
-- Gesture-controlled interfaces
-- Virtual sign language translation
-- Hand pose-based gaming
+## Dataset
+I collected the dataset using my webcam, generating 1000 images for each class (numbers 0-9) using the `collect_images` module. Then, I processed these images with the `create_dataset` module to extract x and y coordinates from hand estimation landmarks. Each landmark array was labeled with the respective number and saved as a pickle file.
 
-## Features
+One of the main challenges in creating the dataset was ensuring accurate predictions for different hand orientations, distances from the webcam, and positions in the frame. I handled this challenge by capturing diverse images in various conditions, but the model's accuracy can still improve with more frames at different distances and positions.
 
-- Real-time hand landmark detection using **MediaPipe Hands**
-- Ability to detect and draw 21 landmarks per hand
-- Visualize important hand points like the **index finger tip**
-- Support for detecting up to two hands simultaneously
+The complete dataset is around 6GB, so it's not uploaded here, but you can collect your own dataset using the aforementioned modules.
 
-## Installation
+## Model
+The machine learning model used is a Random Forest classifier, which achieved over 99% accuracy. The model was trained using the `train_classifier` module on the extracted coordinates from hand landmarks, and the trained model is saved as a `.p` file for future predictions.
 
-To run the project locally, follow these steps:
+## Usage
+To use the system, run the `main.py` script. The script captures video from your webcam, uses MediaPipe for hand pose estimation, and passes the extracted landmarks' coordinates to the saved Random Forest model. The model predicts the number based on the hand gestures, displaying the result on a box around the hand.
 
-1. Clone the repository:
+```bash
+python main.py
+```
 
-   ```bash
-   git clone https://github.com/DanialSoleimany/hand-pose-estimation.git
-   cd hand-pose-estimation
-   ```
+The system predicts numbers in real time, showing a number from 0-9 based on your hand gesture and position in each frame.
 
-2. Install the required dependencies:
-
-   ```bash
-   pip install opencv-python mediapipe
-   ```
-
-3. Run the code:
-
-   ```bash
-   python hand_pose_estimation.py
-   ```
-
-## How It Works
-
-1. The project initializes MediaPipe’s **Hands** model to detect hand landmarks.
-2. It captures video frames from the webcam using **OpenCV**.
-3. Each frame is processed to identify hand landmarks like the wrist, knuckles, and finger tips.
-4. The detected hand pose is drawn on the video stream and displayed in real time.
-
-## Notes
-
-1. Press `q` to quit the webcam feed.
-2. The project detects up to two hands at a time.
-3. The index finger tip is marked with a blue circle and labeled in real time.
-4. The image is flipped horizontally to give a mirror effect for a better user experience.
-
-## Future Enhancements
-
-1. Implement gesture recognition to perform specific actions based on hand signs.
-2. Add multi-hand tracking for more complex interactions.
-3. Optimize performance for mobile devices.
+## License
+This project is licensed under the MIT License. Feel free to use it in your projects or contribute to improve it.
