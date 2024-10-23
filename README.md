@@ -3,9 +3,23 @@
 ## Overview
 This project demonstrates real-time detection of sign language numbers (0-9) using hand gestures. The detection system utilizes a webcam to capture hand gestures, employs MediaPipe for hand pose estimation, and then predicts the corresponding number using a trained machine learning model (Random Forest). The model can accurately predict the numbers based on the hand landmarks' positions.
 
-![Sign Language Numbers](https://github.com/DanialSoleimany/Real-Time-Sign-Language-Detection-Numbers/blob/main/0-to-9.jpg)
+<p align="center">
+  <b>Sign Language Numbers (0-9)</b>
+</p>
 
-[![Watch the video](https://img.youtube.com/vi/Krw_WpgB-X8/0.jpg)](https://youtu.be/Krw_WpgB-X8)
+<p align="center">
+  <img src="https://github.com/DanialSoleimany/Real-Time-Sign-Language-Detection-Numbers/blob/main/0-to-9.jpg" alt="Sign Language Numbers">
+</p>
+
+<p align="center">––––––––––––––––––––––––––––––––––––––––––––</p>
+
+<p align="center">
+  <b>Demo Video</b>
+</p>
+
+<p align="center">
+  [![Watch the video](https://img.youtube.com/vi/Krw_WpgB-X8/0.jpg)](https://youtu.be/Krw_WpgB-X8)
+</p>
 
 ## Table of Contents
 1. [Overview](#overview)
